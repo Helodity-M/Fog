@@ -460,7 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd5ea6c14bc3f54d8e06dabd9f80dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SongPlayer
-  CurrentSong: {fileID: 11400000, guid: c75be462dbfa7fb4fab91563936df677, type: 2}
+  CurrentSong: {fileID: 11400000, guid: 65e1838d15c38d74c9475e8d6f1fb7cd, type: 2}
   NotePrefab: {fileID: 8656578292481971083, guid: 053fda34bd679174cb291a91bf981cb0, type: 3}
   ScrollSpeed: 2
 --- !u!4 &1870573039

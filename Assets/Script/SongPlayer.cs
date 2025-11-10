@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SongPlayer : MonoBehaviour
 {
+    InputAction inputAction;
+
+
     [SerializeField] SongSO CurrentSong;
     [SerializeField] HittableNote NotePrefab;
     [SerializeField] float ScrollSpeed;
@@ -18,6 +22,7 @@ public class SongPlayer : MonoBehaviour
 
     void Start()
     {
+        inputAction = InputSystem.actions.FindAction("Jump");
         NoteObjects = new List<HittableNote>();
         source = GetComponent<AudioSource>();
         StartCoroutine(StartSong());
@@ -47,10 +52,18 @@ public class SongPlayer : MonoBehaviour
             }
         }
         float currentBeat = (songTime / 60.0f) * CurrentSong.BeatsPerMinute;
-        Debug.Log($"Beat: {Mathf.Floor(currentBeat)}:{currentBeat % 1}");
+        if (inputAction.WasPressedThisFrame())
+        {
+            float closest = float.MaxValue;
+            foreach (HittableNote note in NoteObjects)
+            {
+                closest = Mathf.Min(closest, Mathf.Abs(BeatToSeconds(note.noteTime - songTime)));
+            }
+            Debug.Log($"Closest note is {closest * 1000}ms off");
+        }
 
         //Spawning new notes
-        for(int i = noteSpawnIdx; i < CurrentSong.NoteTimes.Count; i++)
+        for (int i = noteSpawnIdx; i < CurrentSong.NoteTimes.Count; i++)
         {
             float spawnBeat = CurrentSong.NoteTimes[i];
             //3 Second window
@@ -76,10 +89,18 @@ public class SongPlayer : MonoBehaviour
 
     }
 
-
-    public float GetCurrentBeatNumber()
+    public float BeatToSeconds(float beats)
     {
         if (!CurrentSong) return 0;
-        return (songTime / 60.0f) * CurrentSong.BeatsPerMinute;
+        return (beats / CurrentSong.BeatsPerMinute) * 60.0f;
+    }
+    public float SecondsToBeats(float seconds)
+    {
+        if (!CurrentSong) return 0;
+        return (seconds / 60.0f) * CurrentSong.BeatsPerMinute;
+    }
+    public float GetCurrentBeatNumber()
+    {
+        return SecondsToBeats(songTime);
     }
 }
