@@ -1,42 +1,85 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using static Unity.VisualScripting.Member;
 
 public class SongPlayer : MonoBehaviour
 {
     [SerializeField] SongSO CurrentSong;
+    [SerializeField] HittableNote NotePrefab;
+    [SerializeField] float ScrollSpeed;
+
+    List<HittableNote> NoteObjects;
+
     AudioSource source;
     float songTime;
     bool isPlayingSong;
 
-
-    float cameraOffBeatSize;
-    float cameraOnBeatSize;
+    int noteSpawnIdx = 0;
 
     void Start()
     {
+        NoteObjects = new List<HittableNote>();
         source = GetComponent<AudioSource>();
-        StartSong();
-        cameraOffBeatSize = Camera.main.orthographicSize;
-        cameraOnBeatSize = Camera.main.orthographicSize - 1;
+        StartCoroutine(StartSong());
     }
 
-    void StartSong()
+    IEnumerator StartSong()
     {
-        source.clip = CurrentSong.SongClip;
-        source.Play();
-        songTime = 0;
+        CurrentSong.SongClip.LoadAudioData();
         isPlayingSong = true;
+        songTime = -3;
+        source.clip = CurrentSong.SongClip;
+        yield return new WaitForSeconds(3);
+        source.Play();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (isPlayingSong)
         {
-            songTime = source.time;
+            if (source.isPlaying)
+            {
+                songTime = source.time;
+            }
+            else
+            {
+                songTime += Time.deltaTime;
+            }
         }
-        float beats = (songTime / 60.0f) * CurrentSong.BeatsPerMinute;
-        Camera.main.orthographicSize = Mathf.Lerp(cameraOnBeatSize, cameraOffBeatSize, beats % 1);
-        Debug.Log($"Beat: {(songTime / 60.0f) * CurrentSong.BeatsPerMinute}");
+        float currentBeat = (songTime / 60.0f) * CurrentSong.BeatsPerMinute;
+        Debug.Log($"Beat: {Mathf.Floor(currentBeat)}:{currentBeat % 1}");
+
+        //Spawning new notes
+        for(int i = noteSpawnIdx; i < CurrentSong.NoteTimes.Count; i++)
+        {
+            float spawnBeat = CurrentSong.NoteTimes[i];
+            //3 Second window
+            if (spawnBeat - currentBeat <= 3 * (CurrentSong.BeatsPerMinute / 60.0f))
+            {
+                HittableNote note = Instantiate(NotePrefab, transform);
+                note.noteTime = CurrentSong.NoteTimes[i]; ;
+                note.transform.position = new Vector3((spawnBeat - currentBeat) * ScrollSpeed, 0, 0);
+                NoteObjects.Add(note);
+
+                noteSpawnIdx++;
+            } else
+            {
+                break;
+            }
+
+        }
+        //Updating note positions
+        foreach(HittableNote n in NoteObjects)
+        {
+            n.transform.position = new Vector3((n.noteTime - currentBeat) * ScrollSpeed, 0, 0);
+        }
+
+    }
+
+
+    public float GetCurrentBeatNumber()
+    {
+        if (!CurrentSong) return 0;
+        return (songTime / 60.0f) * CurrentSong.BeatsPerMinute;
     }
 }
