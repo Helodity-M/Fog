@@ -17,7 +17,7 @@ public class SongPulser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float beats = player.GetCurrentBeatNumber();
+        float beats = player.GetCurrentBeatNumber(true);
         float fraction = beats % 1;
         if(fraction < 0) fraction += 1;
         transform.localScale = Vector3.Lerp(baseScale * (1 + Amplitude), baseScale, fraction);

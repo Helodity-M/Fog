@@ -12,6 +12,9 @@ public class SongPlayer : MonoBehaviour
     [SerializeField] HittableNote NotePrefab;
     [SerializeField] float ScrollSpeed;
 
+    [SerializeField] float audioOffset;
+    [SerializeField] float visualOffset;
+
     List<HittableNote> NoteObjects;
 
     AudioSource source;
@@ -32,7 +35,7 @@ public class SongPlayer : MonoBehaviour
     {
         CurrentSong.SongClip.LoadAudioData();
         isPlayingSong = true;
-        songTime = -3;
+        songTime = -3 + audioOffset;
         source.clip = CurrentSong.SongClip;
         yield return new WaitForSeconds(3);
         source.Play();
@@ -44,7 +47,7 @@ public class SongPlayer : MonoBehaviour
         {
             if (source.isPlaying)
             {
-                songTime = source.time;
+                songTime = source.time + audioOffset;
             }
             else
             {
@@ -67,11 +70,11 @@ public class SongPlayer : MonoBehaviour
         {
             float spawnBeat = CurrentSong.NoteTimes[i];
             //3 Second window
-            if (spawnBeat - currentBeat <= 3 * (CurrentSong.BeatsPerMinute / 60.0f))
+            if (spawnBeat - currentBeat <= SecondsToBeats(3))
             {
                 HittableNote note = Instantiate(NotePrefab, transform);
-                note.noteTime = CurrentSong.NoteTimes[i]; ;
-                note.transform.position = new Vector3((spawnBeat - currentBeat) * ScrollSpeed, 0, 0);
+                note.noteTime = CurrentSong.NoteTimes[i];
+                note.transform.position = new Vector3((spawnBeat + visualOffset - currentBeat) * ScrollSpeed, 0, 0);
                 NoteObjects.Add(note);
 
                 noteSpawnIdx++;
@@ -84,7 +87,7 @@ public class SongPlayer : MonoBehaviour
         //Updating note positions
         foreach(HittableNote n in NoteObjects)
         {
-            n.transform.position = new Vector3((n.noteTime - currentBeat) * ScrollSpeed, 0, 0);
+            n.transform.position = new Vector3((n.noteTime + visualOffset - currentBeat) * ScrollSpeed, 0, 0);
         }
 
     }
@@ -99,8 +102,8 @@ public class SongPlayer : MonoBehaviour
         if (!CurrentSong) return 0;
         return (seconds / 60.0f) * CurrentSong.BeatsPerMinute;
     }
-    public float GetCurrentBeatNumber()
+    public float GetCurrentBeatNumber(bool useVisualOffset)
     {
-        return SecondsToBeats(songTime);
+        return SecondsToBeats(songTime + (useVisualOffset ? visualOffset : 0));
     }
 }
