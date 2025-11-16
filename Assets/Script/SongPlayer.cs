@@ -2,22 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class SongPlayer : MonoBehaviour
 {
     InputAction inputAction;
-
-
+    
     [SerializeField] SongSO CurrentSong;
     [SerializeField] HittableNote NotePrefab;
     [SerializeField] float ScrollSpeed;
 
     [SerializeField] float audioOffset;
     [SerializeField] float visualOffset;
+    [SerializeField] float maxHitTime = 0.5f;
+
 
     List<HittableNote> NoteObjects;
 
+    float lastBeat = -1;
+    [Header("Debug")]
+    [SerializeField] bool metronomeDebug;
+    [SerializeField] AudioClip metronomeClip;
     AudioSource source;
+
+    double songStartDSP;
     float songTime;
     bool isPlayingSong;
 
@@ -25,6 +33,7 @@ public class SongPlayer : MonoBehaviour
 
     void Start()
     {
+        Application.targetFrameRate = 60;
         inputAction = InputSystem.actions.FindAction("Jump");
         NoteObjects = new List<HittableNote>();
         source = GetComponent<AudioSource>();
@@ -39,30 +48,51 @@ public class SongPlayer : MonoBehaviour
         source.clip = CurrentSong.SongClip;
         yield return new WaitForSeconds(3);
         source.Play();
+        songStartDSP = AudioSettings.dspTime + audioOffset;
     }
-
     void Update()
     {
         if (isPlayingSong)
         {
             if (source.isPlaying)
             {
-                songTime = source.time + audioOffset;
+                songTime = (float)(AudioSettings.dspTime - songStartDSP);
+                if (metronomeDebug && Mathf.Floor(SecondsToBeats(songTime)) > lastBeat)
+                {
+                    AudioSource.PlayClipAtPoint(metronomeClip, Vector3.zero);
+                    lastBeat++;
+                }
             }
             else
             {
                 songTime += Time.deltaTime;
             }
         }
-        float currentBeat = (songTime / 60.0f) * CurrentSong.BeatsPerMinute;
+        float currentBeat = SecondsToBeats(songTime);
         if (inputAction.WasPressedThisFrame())
         {
-            float closest = float.MaxValue;
+            float closest = maxHitTime; //Max gap from a note to "hit" it
+            HittableNote closestNote = null;
             foreach (HittableNote note in NoteObjects)
             {
-                closest = Mathf.Min(closest, Mathf.Abs(BeatToSeconds(note.noteTime - songTime)));
+                float offset = Mathf.Abs(BeatToSeconds(note.noteTime - currentBeat));
+                if (closest > offset)
+                {
+                    closest = offset;
+                    closestNote = note;
+                }
             }
-            Debug.Log($"Closest note is {closest * 1000}ms off");
+            
+            if(closestNote)
+            {
+                closestNote.BeHit();
+                NoteObjects.Remove(closestNote);
+            }
+
+            if (CurrentSong.NoteTimes[CurrentSong.NoteTimes.Count - 1] < SecondsToBeats(songTime))
+            {
+                SceneManager.LoadScene(0);
+            }
         }
 
         //Spawning new notes
@@ -84,12 +114,19 @@ public class SongPlayer : MonoBehaviour
             }
 
         }
-        //Updating note positions
-        foreach(HittableNote n in NoteObjects)
+        //Updating note positions + removing missed notes
+        for (int i = 0; i < NoteObjects.Count; i++)
         {
+            HittableNote n = NoteObjects[i];
+            if (currentBeat - maxHitTime > n.noteTime)
+            {
+                n.OnMiss();
+                NoteObjects.Remove(n);
+                i--;
+                continue;
+            }
             n.transform.position = new Vector3((n.noteTime + visualOffset - currentBeat) * ScrollSpeed, 0, 0);
         }
-
     }
 
     public float BeatToSeconds(float beats)
