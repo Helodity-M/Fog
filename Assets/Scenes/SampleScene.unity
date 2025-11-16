@@ -567,8 +567,9 @@ MonoBehaviour:
   CurrentSong: {fileID: 11400000, guid: b246da9a6a3544a499c588547f66fbcd, type: 2}
   NotePrefab: {fileID: 8656578292481971083, guid: 053fda34bd679174cb291a91bf981cb0, type: 3}
   ScrollSpeed: 2.5
-  audioOffset: 0.1
-  visualOffset: 0.05
+  audioOffset: 0
+  visualOffset: 0
+  maxHitTime: 0.5
   metronomeDebug: 0
   metronomeClip: {fileID: 8300000, guid: f08703b7ec5de5141888c229e075a311, type: 3}
 --- !u!4 &1870573039
@@ -690,5 +691,5 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 1870573039}
-  - {fileID: 112393208}
   - {fileID: 1511793510}
+  - {fileID: 112393208}
