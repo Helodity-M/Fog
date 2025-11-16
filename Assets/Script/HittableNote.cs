@@ -5,9 +5,9 @@ public class HittableNote : MonoBehaviour
     [HideInInspector] public float noteTime;
 
 
-    public void BeHit()
+    public void BeHit(NoteAccuracy accuracy)
     {
-        Debug.Log($"Hit note at {noteTime}");
+        Debug.Log($"Hit note at {noteTime} ({accuracy})");
         Destroy(gameObject); //TODO: Replace with death animation
     }
 

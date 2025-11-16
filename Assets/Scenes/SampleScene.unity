@@ -340,7 +340,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 5, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -569,7 +569,10 @@ MonoBehaviour:
   ScrollSpeed: 2.5
   audioOffset: 0
   visualOffset: 0
-  maxHitTime: 0.5
+  perfectTiming: 0.03
+  greatTiming: 0.1
+  okTiming: 0.25
+  missTiming: 0.5
   metronomeDebug: 0
   metronomeClip: {fileID: 8300000, guid: f08703b7ec5de5141888c229e075a311, type: 3}
 --- !u!4 &1870573039

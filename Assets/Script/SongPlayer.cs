@@ -14,7 +14,12 @@ public class SongPlayer : MonoBehaviour
 
     [SerializeField] float audioOffset;
     [SerializeField] float visualOffset;
-    [SerializeField] float maxHitTime = 0.5f;
+
+    [Header("Timing")]
+    [SerializeField] float perfectTiming = 0.1f;
+    [SerializeField] float greatTiming = 0.25f;
+    [SerializeField] float okTiming = 0.4f;
+    [SerializeField] float missTiming = 0.5f;
 
 
     List<HittableNote> NoteObjects;
@@ -33,7 +38,7 @@ public class SongPlayer : MonoBehaviour
 
     void Start()
     {
-        Application.targetFrameRate = 60;
+        //Application.targetFrameRate = 60;
         inputAction = InputSystem.actions.FindAction("Jump");
         NoteObjects = new List<HittableNote>();
         source = GetComponent<AudioSource>();
@@ -71,7 +76,7 @@ public class SongPlayer : MonoBehaviour
         float currentBeat = SecondsToBeats(songTime);
         if (inputAction.WasPressedThisFrame())
         {
-            float closest = maxHitTime; //Max gap from a note to "hit" it
+            float closest = missTiming; //Max gap from a note to "hit" it
             HittableNote closestNote = null;
             foreach (HittableNote note in NoteObjects)
             {
@@ -85,7 +90,7 @@ public class SongPlayer : MonoBehaviour
             
             if(closestNote)
             {
-                closestNote.BeHit();
+                closestNote.BeHit(GetAccuracy(closest));
                 NoteObjects.Remove(closestNote);
             }
 
@@ -118,7 +123,7 @@ public class SongPlayer : MonoBehaviour
         for (int i = 0; i < NoteObjects.Count; i++)
         {
             HittableNote n = NoteObjects[i];
-            if (currentBeat - maxHitTime > n.noteTime)
+            if (currentBeat - missTiming > n.noteTime)
             {
                 n.OnMiss();
                 NoteObjects.Remove(n);
@@ -127,6 +132,27 @@ public class SongPlayer : MonoBehaviour
             }
             n.transform.position = new Vector3((n.noteTime + visualOffset - currentBeat) * ScrollSpeed, 0, 0);
         }
+    }
+
+    public NoteAccuracy GetAccuracy(float offsetSeconds)
+    {
+        float absOffset = Mathf.Abs(offsetSeconds);
+
+        if (absOffset < perfectTiming)
+        {
+            return NoteAccuracy.Perfect;
+        }
+
+        if(absOffset < greatTiming)
+        {
+            return NoteAccuracy.Great;
+        }
+
+        if(absOffset < okTiming)
+        {
+            return NoteAccuracy.OK;
+        }
+        return NoteAccuracy.Miss;
     }
 
     public float BeatToSeconds(float beats)
