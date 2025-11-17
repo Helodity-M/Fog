@@ -3,8 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuButtons : MonoBehaviour
 {
+    [SerializeField] CutsceneSO StartingCutscene;
+
     public void LoadGameplay()
     {
-        SceneManager.LoadScene("Gameplay");
+        CutsceneManager.currentCutscene = StartingCutscene;
+        SceneManager.LoadScene("Cutscene");
     }
 }
