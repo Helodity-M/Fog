@@ -12,32 +12,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e85c7494b6a534686ff23565bedc0a, type: 3}
   m_Name: Fog
   m_EditorClassIdentifier: Assembly-CSharp::SongSO
-  SongClip: {fileID: 8300000, guid: 05531f680ae02674ba7b3732a4afd06c, type: 3}
-  BeatsPerMinute: 180
+  SongClip: {fileID: 8300000, guid: a47b1edf60c8b024da19196b6d12c59c, type: 3}
+  BeatsPerMinute: 175
   NoteTimes:
   - 0
-  - 1
-  - 2
-  - 2.5
-  - 3
-  - 4
-  - 5
-  - 6
-  - 6.5
-  - 7
-  - 7.5
   - 8
-  - 9
-  - 10
-  - 11
-  - 11.5
-  - 12
-  - 13
-  - 14
-  - 15
-  - 15.5
   - 16
-  - 16.5
-  - 17
-  - 18
-  - 19
+  - 24
+  - 32
+  - 37
+  - 53
+  - 64
+  - 65
+  - 67
+  - 71
+  - 72
+  - 76
+  - 78
+  - 80
+  - 82
+  - 84
+  - 88
+  NotePatterns:
+  - {fileID: 11400000, guid: 7c8ac68104a0ebc40b8094129e856a6a, type: 2}
+  - {fileID: 11400000, guid: 7c8ac68104a0ebc40b8094129e856a6a, type: 2}
+  - {fileID: 11400000, guid: 7c8ac68104a0ebc40b8094129e856a6a, type: 2}
+  - {fileID: 11400000, guid: 7c8ac68104a0ebc40b8094129e856a6a, type: 2}
+  - {fileID: 11400000, guid: 65c1d3724be12eb4892327b976b9dc79, type: 2}
+  - {fileID: 11400000, guid: 88a4cf320c91eb74c82632579c59812f, type: 2}
+  - {fileID: 11400000, guid: 88a4cf320c91eb74c82632579c59812f, type: 2}
+  - {fileID: 11400000, guid: 65c1d3724be12eb4892327b976b9dc79, type: 2}
+  - {fileID: 11400000, guid: 88a4cf320c91eb74c82632579c59812f, type: 2}
+  - {fileID: 11400000, guid: 337a160bc4a95544186401ca2a58a6c9, type: 2}
+  - {fileID: 11400000, guid: 88a4cf320c91eb74c82632579c59812f, type: 2}
+  - {fileID: 11400000, guid: 337a160bc4a95544186401ca2a58a6c9, type: 2}
+  - {fileID: 11400000, guid: 65c1d3724be12eb4892327b976b9dc79, type: 2}
+  - {fileID: 11400000, guid: 65c1d3724be12eb4892327b976b9dc79, type: 2}
+  - {fileID: 11400000, guid: 65c1d3724be12eb4892327b976b9dc79, type: 2}
+  - {fileID: 11400000, guid: 88a4cf320c91eb74c82632579c59812f, type: 2}
+  - {fileID: 11400000, guid: 337a160bc4a95544186401ca2a58a6c9, type: 2}
+  - {fileID: 11400000, guid: 65c1d3724be12eb4892327b976b9dc79, type: 2}

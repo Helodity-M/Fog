@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class SongPlayer : MonoBehaviour
     InputAction inputAction;
     
     [SerializeField] SongSO CurrentSong;
+    List<Tuple<GameObject, float>> NoteList;
     [SerializeField] HittableNote NotePrefab;
     [SerializeField] float ScrollSpeed;
 
@@ -20,7 +22,6 @@ public class SongPlayer : MonoBehaviour
     [SerializeField] float greatTiming = 0.25f;
     [SerializeField] float okTiming = 0.4f;
     [SerializeField] float missTiming = 0.5f;
-
 
     List<HittableNote> NoteObjects;
 
@@ -39,6 +40,7 @@ public class SongPlayer : MonoBehaviour
     void Start()
     {
         //Application.targetFrameRate = 60;
+        NoteList = CurrentSong.Parse();
         inputAction = InputSystem.actions.FindAction("Jump");
         NoteObjects = new List<HittableNote>();
         source = GetComponent<AudioSource>();
@@ -94,21 +96,21 @@ public class SongPlayer : MonoBehaviour
                 NoteObjects.Remove(closestNote);
             }
 
-            if (CurrentSong.NoteTimes[CurrentSong.NoteTimes.Count - 1] < SecondsToBeats(songTime))
+            if (NoteList[NoteList.Count - 1].Item2 < SecondsToBeats(songTime))
             {
                 SceneManager.LoadScene(0);
             }
         }
 
         //Spawning new notes
-        for (int i = noteSpawnIdx; i < CurrentSong.NoteTimes.Count; i++)
+        for (int i = noteSpawnIdx; i < NoteList.Count; i++)
         {
-            float spawnBeat = CurrentSong.NoteTimes[i];
+            float spawnBeat = NoteList[i].Item2;
             //3 Second window
             if (spawnBeat - currentBeat <= SecondsToBeats(3))
             {
                 HittableNote note = Instantiate(NotePrefab, transform);
-                note.noteTime = CurrentSong.NoteTimes[i];
+                note.noteTime = NoteList[i].Item2;
                 note.transform.position = new Vector3((spawnBeat + visualOffset - currentBeat) * ScrollSpeed, 0, 0);
                 NoteObjects.Add(note);
 
