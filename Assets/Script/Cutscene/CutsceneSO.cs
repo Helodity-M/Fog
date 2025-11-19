@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CutsceneSO", menuName = "Scriptable Objects/CutsceneSO")]
 public class CutsceneSO : ScriptableObject
 {
+    public SongSO SongToPlay;
     public Sprite BackgroundSprite;
     public List<CutsceneCharacter> characters;
     public List<DialogueBox> dialogue;

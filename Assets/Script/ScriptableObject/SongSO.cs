@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Song", menuName = "Scriptable Objects/Song")]
 public class SongSO : ScriptableObject
 {
+    public CutsceneSO CompletionCutscene;
     public AudioClip SongClip;
 
     public int BeatsPerMinute;

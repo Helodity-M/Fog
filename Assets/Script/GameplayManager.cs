@@ -29,7 +29,7 @@ public class GameplayManager : MonoBehaviour
 
     private void Start()
     {
-        NoteList = player.CurrentSong.Parse();
+        NoteList = SongPlayer.CurrentSong.Parse();
         inputAction = InputSystem.actions.FindAction("Jump");
         NoteObjects = new List<HittableNote>();
         player.BeginPlayback(3);
@@ -67,7 +67,14 @@ public class GameplayManager : MonoBehaviour
 
         if (NoteList[NoteList.Count - 1].Item2 < player.GetCurrentBeatNumber())
         {
-            SceneManager.LoadScene(0);
+            if(SongPlayer.CurrentSong.CompletionCutscene != null)
+            {
+                CutsceneManager.currentCutscene = SongPlayer.CurrentSong.CompletionCutscene;
+                SceneManager.LoadScene("Cutscene");
+            } else
+            {
+                SceneManager.LoadScene("MainMenu");
+            }
         }
     }
     void SpawnNewNotes()

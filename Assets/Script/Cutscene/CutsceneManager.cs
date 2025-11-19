@@ -56,7 +56,14 @@ public class CutsceneManager : MonoBehaviour
     {
         if(dialogueIdx >= currentCutscene.dialogue.Count)
         {
-            SceneManager.LoadScene("Gameplay");
+            if (currentCutscene.SongToPlay != null)
+            {
+                SongPlayer.CurrentSong = currentCutscene.SongToPlay;
+                SceneManager.LoadScene("Gameplay");
+            } else
+            {
+                SceneManager.LoadScene("MainMenu");
+            }
             return;
         }
         Textbox.text = currentCutscene.dialogue[dialogueIdx].Text;

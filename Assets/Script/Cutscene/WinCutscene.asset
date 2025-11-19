@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19a678e4281280745a3b33aac72fb395, type: 3}
-  m_Name: TESTCUTSCENE
+  m_Name: WinCutscene
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneSO
   SongToPlay: {fileID: 11400000, guid: b246da9a6a3544a499c588547f66fbcd, type: 2}
   BackgroundSprite: {fileID: 0}

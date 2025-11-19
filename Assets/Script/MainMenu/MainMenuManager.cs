@@ -4,11 +4,13 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] CutsceneSO StartingCutscene;
+    [SerializeField] SongSO MenuSong;
 
     [SerializeField] SongPlayer songPlayer;
 
-    private void Awake()
+    private void Start()
     {
+        SongPlayer.CurrentSong = MenuSong;
         songPlayer.BeginPlayback(0);
     }
 

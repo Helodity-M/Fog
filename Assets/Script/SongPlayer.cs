@@ -4,7 +4,7 @@ using UnityEngine;
 public class SongPlayer : MonoBehaviour
 {
     
-    public SongSO CurrentSong;
+    public static SongSO CurrentSong;
 
     [SerializeField] float audioOffset;
 
@@ -14,15 +14,13 @@ public class SongPlayer : MonoBehaviour
     float songTime;
     public bool SongCoroutineStarted;
 
-    void Start()
+    void Awake()
     {
         source = GetComponent<AudioSource>();
     }
 
     public void BeginPlayback(float delay)
     {
-        if(!source)
-            source = GetComponent<AudioSource>();
         StartCoroutine(StartSong(delay));
     }
 
