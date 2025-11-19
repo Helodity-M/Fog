@@ -44,6 +44,10 @@ public class GameplayManager : MonoBehaviour
         }
         SpawnNewNotes();
         UpdateNotePosition();
+        if (player.GetCurrentBeatNumber() > SongPlayer.CurrentSong.EndBeat)
+        {
+            EndSong();
+        }
     }
     void TryHitNote()
     {
@@ -63,18 +67,6 @@ public class GameplayManager : MonoBehaviour
         {
             closestNote.BeHit(GetAccuracy(closest));
             NoteObjects.Remove(closestNote);
-        }
-
-        if (NoteList[NoteList.Count - 1].Item2 < player.GetCurrentBeatNumber())
-        {
-            if(SongPlayer.CurrentSong.CompletionCutscene != null)
-            {
-                CutsceneManager.currentCutscene = SongPlayer.CurrentSong.CompletionCutscene;
-                SceneManager.LoadScene("Cutscene");
-            } else
-            {
-                SceneManager.LoadScene("MainMenu");
-            }
         }
     }
     void SpawnNewNotes()
@@ -116,6 +108,19 @@ public class GameplayManager : MonoBehaviour
                 continue;
             }
             n.transform.position = new Vector3((n.noteTime + visualOffset - currentBeat) * ScrollSpeed, 0, 0);
+        }
+    }
+
+    void EndSong()
+    {
+        if (SongPlayer.CurrentSong.CompletionCutscene != null)
+        {
+            CutsceneManager.currentCutscene = SongPlayer.CurrentSong.CompletionCutscene;
+            SceneManager.LoadScene("Cutscene");
+        }
+        else
+        {
+            SceneManager.LoadScene("MainMenu");
         }
     }
 

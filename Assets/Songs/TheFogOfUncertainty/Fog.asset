@@ -15,6 +15,7 @@ MonoBehaviour:
   CompletionCutscene: {fileID: 11400000, guid: 2e2e40b0ce9454647bc510114fbb0f64, type: 2}
   SongClip: {fileID: 8300000, guid: a47b1edf60c8b024da19196b6d12c59c, type: 3}
   BeatsPerMinute: 175
+  EndBeat: 90
   NoteTimes:
   - 0
   - 8

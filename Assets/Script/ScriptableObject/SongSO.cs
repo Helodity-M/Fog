@@ -9,6 +9,7 @@ public class SongSO : ScriptableObject
     public AudioClip SongClip;
 
     public int BeatsPerMinute;
+    public int EndBeat;
     [SerializeField] List<float> NoteTimes;
     [SerializeField] List<NotePatternSO> NotePatterns;
 
