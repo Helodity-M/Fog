@@ -10,13 +10,20 @@ public class TransformAnimator : MonoBehaviour
 
 
     [SerializeField] bool playOnStart;
+    bool reverse = false;
 
     private void Awake()
     {
         if (playOnStart)
         {
-            durationRemaining = duration;
+            StartAnimation();
         }
+    }
+
+    public void StartAnimation(bool r = false)
+    {
+        reverse = r;
+        durationRemaining = duration;
     }
 
     private void Update()
@@ -28,6 +35,10 @@ public class TransformAnimator : MonoBehaviour
         float time = 1 - (durationRemaining / duration);
         time = Mathf.Sin((time * Mathf.PI) / 2); //Ease Out
 
-        transform.localPosition = Vector2.Lerp(startPos, endPos, time);
+        Vector2 start = reverse ? endPos : startPos;
+        Vector2 end = reverse ? startPos : endPos;
+
+
+        transform.localPosition = Vector2.Lerp(start, end, time);
     }
 }

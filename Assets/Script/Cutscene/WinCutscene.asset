@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19a678e4281280745a3b33aac72fb395, type: 3}
   m_Name: WinCutscene
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneSO
-  SongToPlay: {fileID: 11400000, guid: b246da9a6a3544a499c588547f66fbcd, type: 2}
+  SongToPlay: {fileID: 0}
   BackgroundSprite: {fileID: 0}
   characters:
   - characterSprite: {fileID: 7482667652216324306, guid: 69071b9624b787b429969500efecebfb, type: 3}
   - characterSprite: {fileID: 7482667652216324306, guid: 5bdad7dc376a82f49a3e62660b0c2bfc, type: 3}
   dialogue:
-  - Text: THIS IS A TEST CUTSCENE
+  - Text: Wow you did it you won!
     SpeakerIdx: 0
-  - Text: I hope this works!
+  - Text: Im really proud of you
     SpeakerIdx: 1
-  - Text: Back to character one!
+  - Text: Now it should go back to the main menu. all fancy like. how much dialogue
+      can i add im kinda curious aaaaaaaaaaaaaaa bbbbbbbbbb ccccccc dddddd
     SpeakerIdx: 0

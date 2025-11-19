@@ -7,6 +7,10 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] SongSO MenuSong;
 
     [SerializeField] SongPlayer songPlayer;
+    [Header("Options")]
+
+    [SerializeField] TransformAnimator optionsPageAnimator;
+
 
     private void Start()
     {
@@ -18,5 +22,15 @@ public class MainMenuManager : MonoBehaviour
     {
         CutsceneManager.currentCutscene = StartingCutscene;
         SceneManager.LoadScene("Cutscene");
+    }
+
+
+    public void OpenOptionsPage()
+    {
+        optionsPageAnimator.StartAnimation(true);
+    }
+    public void CloseOptionsPage()
+    {
+        optionsPageAnimator.StartAnimation(false);
     }
 }

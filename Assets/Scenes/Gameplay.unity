@@ -259,7 +259,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -616,7 +616,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd5ea6c14bc3f54d8e06dabd9f80dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SongPlayer
-  CurrentSong: {fileID: 11400000, guid: b246da9a6a3544a499c588547f66fbcd, type: 2}
   audioOffset: 0
   SongCoroutineStarted: 0
 --- !u!4 &1870573039
