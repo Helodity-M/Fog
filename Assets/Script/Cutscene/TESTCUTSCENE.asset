@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19a678e4281280745a3b33aac72fb395, type: 3}
   m_Name: TESTCUTSCENE
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneSO
+  BackgroundSprite: {fileID: 0}
   characters:
-  - characterRenderer: {fileID: 0}
-  - characterRenderer: {fileID: 0}
+  - characterSprite: {fileID: 7482667652216324306, guid: 69071b9624b787b429969500efecebfb, type: 3}
+  - characterSprite: {fileID: 7482667652216324306, guid: 5bdad7dc376a82f49a3e62660b0c2bfc, type: 3}
   dialogue:
   - Text: THIS IS A TEST CUTSCENE
     SpeakerIdx: 0

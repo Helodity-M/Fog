@@ -13,7 +13,7 @@ public class CutsceneSO : ScriptableObject
 [Serializable]
 public class CutsceneCharacter
 {
-    public Sprite characterRenderer;
+    public Sprite characterSprite;
 }
 
 
