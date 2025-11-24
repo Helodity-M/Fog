@@ -32,13 +32,10 @@ public class TransformAnimator : MonoBehaviour
         if (durationRemaining < 0)
             durationRemaining = 0;
 
-        float time = 1 - (durationRemaining / duration);
+        float time = reverse ? (durationRemaining / duration) : 1 - (durationRemaining / duration);
         time = Mathf.Sin((time * Mathf.PI) / 2); //Ease Out
 
-        Vector2 start = reverse ? endPos : startPos;
-        Vector2 end = reverse ? startPos : endPos;
 
-
-        transform.localPosition = Vector2.Lerp(start, end, time);
+        transform.localPosition = Vector2.Lerp(startPos, endPos, time);
     }
 }

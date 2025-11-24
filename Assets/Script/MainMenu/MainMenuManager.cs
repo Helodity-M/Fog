@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +12,7 @@ public class MainMenuManager : MonoBehaviour
     [Header("Options")]
 
     [SerializeField] TransformAnimator optionsPageAnimator;
+    [SerializeField] List<TransformAnimator> onLeaveAnimators;
 
 
     private void Start()
@@ -21,9 +24,23 @@ public class MainMenuManager : MonoBehaviour
     public void LoadGameplay()
     {
         CutsceneManager.currentCutscene = StartingCutscene;
+        OnStartSceneLeave();
+        StartCoroutine(LoadScene("Cutscene", 0.5f));
+    }
+
+    IEnumerator LoadScene(string sceneName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
         SceneManager.LoadScene("Cutscene");
     }
 
+    void OnStartSceneLeave()
+    {
+        foreach (TransformAnimator anim in onLeaveAnimators)
+        {
+            anim.StartAnimation(true);
+        }
+    }
 
     public void OpenOptionsPage()
     {

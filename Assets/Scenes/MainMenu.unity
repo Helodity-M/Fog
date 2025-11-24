@@ -2220,6 +2220,12 @@ MonoBehaviour:
   MenuSong: {fileID: 11400000, guid: 6583eb700955d494ebf3a89c70896823, type: 2}
   songPlayer: {fileID: 85573580}
   optionsPageAnimator: {fileID: 869775257}
+  onLeaveAnimators:
+  - {fileID: 1429290847}
+  - {fileID: 252183970}
+  - {fileID: 464238052}
+  - {fileID: 489294493}
+  - {fileID: 1998972433}
 --- !u!1 &1833362070
 GameObject:
   m_ObjectHideFlags: 0
