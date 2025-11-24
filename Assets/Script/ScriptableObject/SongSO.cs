@@ -13,6 +13,10 @@ public class SongSO : ScriptableObject
     [SerializeField] List<float> NoteTimes;
     [SerializeField] List<NotePatternSO> NotePatterns;
 
+    [Header("Visuals")]
+    public Sprite BackgroundSprite;
+    public Sprite GroundTileSprite;
+    public Sprite GroundTopSprite;
 
 
     public List<Tuple<GameObject, float>> Parse()
