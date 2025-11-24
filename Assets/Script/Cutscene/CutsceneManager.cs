@@ -34,6 +34,7 @@ public class CutsceneManager : MonoBehaviour
 
     void InitializeCutscene()
     {
+        backgroundRenderer.sprite = currentCutscene.BackgroundSprite;
         float canvasWidth = ((Canvas)FindAnyObjectByType(typeof(Canvas))).GetComponent<RectTransform>().rect.width;
         for (int i = 0; i < currentCutscene.characters.Count; i++)
         {
