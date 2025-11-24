@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using static Unity.VisualScripting.Member;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -24,8 +23,6 @@ public class GameplayManager : MonoBehaviour
     List<HittableNote> NoteObjects;
     List<Tuple<GameObject, float>> NoteList;
     int noteSpawnIdx = 0;
-
-
 
     private void Start()
     {

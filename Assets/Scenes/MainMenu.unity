@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd5ea6c14bc3f54d8e06dabd9f80dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SongPlayer
-  audioOffset: 0.2
+  audioOffset: 0
   SongCoroutineStarted: 0
 --- !u!4 &85573581
 Transform:
@@ -2110,7 +2110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuButtons
   StartingCutscene: {fileID: 11400000, guid: 2d841dbce38462a4fb587244a4dcebd0, type: 2}
-  MenuSong: {fileID: 11400000, guid: 65e1838d15c38d74c9475e8d6f1fb7cd, type: 2}
+  MenuSong: {fileID: 11400000, guid: 6583eb700955d494ebf3a89c70896823, type: 2}
   songPlayer: {fileID: 85573580}
   optionsPageAnimator: {fileID: 869775257}
 --- !u!1 &1833362070
