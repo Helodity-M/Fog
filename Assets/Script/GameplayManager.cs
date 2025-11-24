@@ -8,7 +8,15 @@ public class GameplayManager : MonoBehaviour
 {
     InputAction inputAction;
 
+    public float playerHealth { get; private set; }
+
     [SerializeField] SongPlayer player;
+
+    [Header("Health")]
+    [SerializeField] float perfectHealthChange = 0.01f;
+    [SerializeField] float greatHealthChange = 0.005f;
+    [SerializeField] float okHealthChange = 0.0f;
+    [SerializeField] float missHealthChange = -0.07f;
 
     [Header("Timing")]
     [SerializeField] float perfectTiming = 0.1f;
@@ -26,6 +34,7 @@ public class GameplayManager : MonoBehaviour
 
     private void Start()
     {
+        playerHealth = 1;
         NoteList = SongPlayer.CurrentSong.Parse();
         inputAction = InputSystem.actions.FindAction("Jump");
         NoteObjects = new List<HittableNote>();
@@ -45,6 +54,7 @@ public class GameplayManager : MonoBehaviour
         {
             EndSong();
         }
+        Debug.Log(playerHealth);
     }
     void TryHitNote()
     {
@@ -62,7 +72,9 @@ public class GameplayManager : MonoBehaviour
 
         if (closestNote)
         {
-            closestNote.BeHit(GetAccuracy(closest));
+            NoteAccuracy accuracy = GetAccuracy(closest);
+            closestNote.BeHit(accuracy);
+            ModifyHealth(accuracy);
             NoteObjects.Remove(closestNote);
         }
     }
@@ -100,6 +112,7 @@ public class GameplayManager : MonoBehaviour
             if (currentBeat - missTiming > n.noteTime)
             {
                 n.OnMiss();
+                ModifyHealth(NoteAccuracy.Miss);
                 NoteObjects.Remove(n);
                 i--;
                 continue;
@@ -121,6 +134,27 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
+
+    public void ModifyHealth(NoteAccuracy accuracy)
+    {
+        float value = 0;
+        switch (accuracy)
+        {
+            case NoteAccuracy.Perfect:
+                value = perfectHealthChange;
+                break;
+            case NoteAccuracy.Great:
+                value = greatHealthChange;
+                break;
+            case NoteAccuracy.OK:
+                value = okHealthChange;
+                break;
+            case NoteAccuracy.Miss:
+                value = missHealthChange;
+                break;
+        }
+        playerHealth = Mathf.Min(1, playerHealth + value);
+    }
     public NoteAccuracy GetAccuracy(float offsetSeconds)
     {
         float absOffset = Mathf.Abs(offsetSeconds);
