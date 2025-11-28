@@ -5,6 +5,7 @@ public class SongPlayer : MonoBehaviour
 {
     
     public static SongSO CurrentSong;
+    public static bool IsFreeplay = false;
 
     [SerializeField] float audioOffset;
 

@@ -124,7 +124,7 @@ public class GameplayManager : MonoBehaviour
 
     void EndSong()
     {
-        if (SongPlayer.CurrentSong.CompletionCutscene != null)
+        if (SongPlayer.CurrentSong.CompletionCutscene != null && !SongPlayer.IsFreeplay)
         {
             CutsceneManager.currentCutscene = SongPlayer.CurrentSong.CompletionCutscene;
             SceneManager.LoadScene("Cutscene");

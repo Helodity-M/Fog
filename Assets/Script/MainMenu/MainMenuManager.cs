@@ -27,6 +27,7 @@ public class MainMenuManager : MonoBehaviour
     public void LoadGameplay()
     {
         CutsceneManager.currentCutscene = StartingCutscene;
+        SongPlayer.IsFreeplay = false;
         OnStartSceneLeave();
         StartCoroutine(LoadScene("Cutscene", 0.5f));
     }
@@ -39,7 +40,9 @@ public class MainMenuManager : MonoBehaviour
 
     public void LoadFreeplaySong(SongSO song)
     {
+        CloseFreeplayPage(); //I cannot be bothered to make a better implementation
         OnStartSceneLeave();
+        SongPlayer.IsFreeplay = true;
         SongPlayer.CurrentSong = song;
         StartCoroutine(LoadScene("Gameplay", 0.5f));
     }
