@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19a678e4281280745a3b33aac72fb395, type: 3}
   m_Name: TESTCUTSCENE
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneSO
-  SongToPlay: {fileID: 11400000, guid: b246da9a6a3544a499c588547f66fbcd, type: 2}
+  SongToPlay: {fileID: 11400000, guid: 120bcaf6f7796774bb2109dc20389c4e, type: 2}
   BackgroundSprite: {fileID: 21300000, guid: cfae008b2060f7249b9a572ecbd3b4eb, type: 3}
   characters:
   - characterSprite: {fileID: 7482667652216324306, guid: 69071b9624b787b429969500efecebfb, type: 3}
