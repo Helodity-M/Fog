@@ -15,17 +15,21 @@ MonoBehaviour:
   CompletionCutscene: {fileID: 0}
   SongClip: {fileID: 8300000, guid: feba8cc69943ee3439c82cb4ffc0657a, type: 3}
   BeatsPerMinute: 140
-  EndBeat: 238
+  EndBeat: 232
   NoteTimes:
   - 32
   - 64
   - 96
   - 128
+  - 160
+  - 192
   NotePatterns:
   - {fileID: 11400000, guid: e4b826784ffccda47a92561f96dc7d1f, type: 2}
   - {fileID: 11400000, guid: 3fdcef24ee953324a84fe5427351cf90, type: 2}
   - {fileID: 11400000, guid: e4b826784ffccda47a92561f96dc7d1f, type: 2}
   - {fileID: 11400000, guid: 991dd944e7a43a642b5b92e7e9365c36, type: 2}
+  - {fileID: 11400000, guid: a47d9e8327bcb8d47b2add267f4f49d5, type: 2}
+  - {fileID: 11400000, guid: 3fdcef24ee953324a84fe5427351cf90, type: 2}
   BackgroundSprite: {fileID: 21300000, guid: cfae008b2060f7249b9a572ecbd3b4eb, type: 3}
   GroundTileSprite: {fileID: 21300000, guid: 94b9aae5592f1fa48a1f78e8ed6f50f7, type: 3}
   GroundTopSprite: {fileID: 21300000, guid: ab6c40bed381c994788c3371ef739bb4, type: 3}
