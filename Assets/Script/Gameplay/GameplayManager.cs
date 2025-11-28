@@ -32,18 +32,14 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] NoteAccuracyValue scoreValues;
     ScoreKeeper scoreKeeper;
 
-
-    
-
     private void Start()
     {
         playerHealth = 1;
         NoteList = SongPlayer.CurrentSong.Parse();
         inputAction = InputSystem.actions.FindAction("Jump");
         NoteObjects = new List<HittableNote>();
-        player.BeginPlayback(3);
+        player.BeginPlayback(2);
         scoreKeeper = FindAnyObjectByType<ScoreKeeper>();
-        
     }
 
 
@@ -59,7 +55,6 @@ public class GameplayManager : MonoBehaviour
         {
             EndSong();
         }
-        Debug.Log(playerHealth);
     }
     void TryHitNote()
     {

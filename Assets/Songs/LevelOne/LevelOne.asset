@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e85c7494b6a534686ff23565bedc0a, type: 3}
   m_Name: LevelOne
   m_EditorClassIdentifier: Assembly-CSharp::SongSO
-  CompletionCutscene: {fileID: 0}
+  CompletionCutscene: {fileID: 11400000, guid: aee2cbad86930494e819d1782df1b6f6, type: 2}
   SongClip: {fileID: 8300000, guid: feba8cc69943ee3439c82cb4ffc0657a, type: 3}
   BeatsPerMinute: 140
   EndBeat: 232

@@ -13,7 +13,6 @@ public class ScoreKeeper : MonoBehaviour
     {
         score += scoreToAdd;
         score = Mathf.Clamp(score,0,int.MaxValue);
-        print(score);
     }
 
     public void ResetScore()

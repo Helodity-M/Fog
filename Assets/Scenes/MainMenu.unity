@@ -2216,7 +2216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c97518ca1a1774a912d4254db0a7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuButtons
-  StartingCutscene: {fileID: 11400000, guid: aee2cbad86930494e819d1782df1b6f6, type: 2}
+  StartingCutscene: {fileID: 11400000, guid: 12a90d69eea027145bbee22358066852, type: 2}
   MenuSong: {fileID: 11400000, guid: 6583eb700955d494ebf3a89c70896823, type: 2}
   songPlayer: {fileID: 85573580}
   optionsPageAnimator: {fileID: 869775257}
