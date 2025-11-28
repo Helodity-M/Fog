@@ -27,6 +27,7 @@ public class NoteAccuracyValue
         }
     }
 
+    //This technically breaks whenever you want a bigger value to be the "perfect" value but oh well
     public NoteAccuracy GetAccuracy(float value)
     {
         if (value < perfectValue)

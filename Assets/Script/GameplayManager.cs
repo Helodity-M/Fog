@@ -28,9 +28,9 @@ public class GameplayManager : MonoBehaviour
     List<Tuple<GameObject, float>> NoteList;
     int noteSpawnIdx = 0;
 
-   [Header("Score")]
-   [SerializeField] int scoreValue = 50;
-   ScoreKeeper scoreKeeper;
+    [Header("Score")]
+    [SerializeField] NoteAccuracyValue scoreValues;
+    ScoreKeeper scoreKeeper;
 
 
     
@@ -81,7 +81,7 @@ public class GameplayManager : MonoBehaviour
             closestNote.BeHit(accuracy);
             ModifyHealth(accuracy);
             NoteObjects.Remove(closestNote);
-            scoreKeeper.ModifyScore(scoreValue);
+            scoreKeeper.ModifyScore((int)scoreValues.GetValue(accuracy));
         }
     }
     void SpawnNewNotes()
