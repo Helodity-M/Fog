@@ -33,7 +33,7 @@ public class TransformAnimator : MonoBehaviour
             durationRemaining = 0;
 
         float time = reverse ? (durationRemaining / duration) : 1 - (durationRemaining / duration);
-        time = Mathf.Sin((time * Mathf.PI) / 2); //Ease Out
+        time = -(Mathf.Cos(Mathf.PI * time) - 1) / 2; //Ease In/Out
 
 
         transform.localPosition = Vector2.Lerp(startPos, endPos, time);

@@ -3160,7 +3160,7 @@ MonoBehaviour:
   MenuSong: {fileID: 11400000, guid: 6583eb700955d494ebf3a89c70896823, type: 2}
   songPlayer: {fileID: 85573580}
   optionsPageAnimator: {fileID: 869775257}
-  freeplayPageAnimator: {fileID: 0}
+  freeplayPageAnimator: {fileID: 1712082298}
   onLeaveAnimators:
   - {fileID: 1429290847}
   - {fileID: 252183970}
