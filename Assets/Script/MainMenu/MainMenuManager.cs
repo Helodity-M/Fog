@@ -10,8 +10,11 @@ public class MainMenuManager : MonoBehaviour
 
     [SerializeField] SongPlayer songPlayer;
     [Header("Options")]
-
     [SerializeField] TransformAnimator optionsPageAnimator;
+
+    [Header("Freeplay")]
+    [SerializeField] TransformAnimator freeplayPageAnimator;
+
     [SerializeField] List<TransformAnimator> onLeaveAnimators;
 
 
@@ -31,8 +34,16 @@ public class MainMenuManager : MonoBehaviour
     IEnumerator LoadScene(string sceneName, float delay)
     {
         yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene("Cutscene");
+        SceneManager.LoadScene(sceneName);
     }
+
+    public void LoadFreeplaySong(SongSO song)
+    {
+        OnStartSceneLeave();
+        SongPlayer.CurrentSong = song;
+        StartCoroutine(LoadScene("Gameplay", 0.5f));
+    }
+
 
     void OnStartSceneLeave()
     {
@@ -49,5 +60,13 @@ public class MainMenuManager : MonoBehaviour
     public void CloseOptionsPage()
     {
         optionsPageAnimator.StartAnimation(false);
+    }
+    public void OpenFreeplayPage()
+    {
+        freeplayPageAnimator.StartAnimation(true);
+    }
+    public void CloseFreeplayPage()
+    {
+        freeplayPageAnimator.StartAnimation(false);
     }
 }
