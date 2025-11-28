@@ -1158,7 +1158,7 @@ MonoBehaviour:
     missValue: 0.5
   visualOffset: 0
   NotePrefab: {fileID: 8656578292481971083, guid: 053fda34bd679174cb291a91bf981cb0, type: 3}
-  ScrollSpeed: 2.5
+  ScrollSpeed: 3
   scoreValues:
     perfectValue: 100
     greatValue: 75
@@ -1523,7 +1523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3a762a28ac2224fae6ecb485f7a285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackgroundScroller
-  ScrollSpeed: {x: 2.5, y: 0}
+  ScrollSpeed: {x: 3.5, y: 0}
 --- !u!1 &1788503709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1569,7 +1569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3a762a28ac2224fae6ecb485f7a285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackgroundScroller
-  ScrollSpeed: {x: 2.5, y: 0}
+  ScrollSpeed: {x: 3.5, y: 0}
 --- !u!212 &1788503712
 SpriteRenderer:
   m_ObjectHideFlags: 0
