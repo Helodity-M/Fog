@@ -12,5 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 627e52e8dac0eab41aeac7a22cd45011, type: 3}
   m_Name: L2_Bridge
   m_EditorClassIdentifier: Assembly-CSharp::NotePatternSO
-  NoteObject: {fileID: 0}
-  NoteTimes: []
+  NoteObject: {fileID: 6705484203047372072, guid: 053fda34bd679174cb291a91bf981cb0, type: 3}
+  NoteTimes:
+  - 0
+  - 2.5
+  - 3.5
+  - 4
+  - 6.5
+  - 7.5
+  - 8
+  - 10
+  - 12
+  - 13
+  - 13.5
+  - 14.5
+  - 15

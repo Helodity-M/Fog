@@ -12,5 +12,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 627e52e8dac0eab41aeac7a22cd45011, type: 3}
   m_Name: L2_MelodyB
   m_EditorClassIdentifier: Assembly-CSharp::NotePatternSO
-  NoteObject: {fileID: 0}
-  NoteTimes: []
+  NoteObject: {fileID: 6705484203047372072, guid: 053fda34bd679174cb291a91bf981cb0, type: 3}
+  NoteTimes:
+  - 0
+  - 0.5
+  - 2.5
+  - 3
+  - 3.5
+  - 3.75
+  - 4
+  - 4.5
+  - 8
+  - 8.5
+  - 10.5
+  - 11
+  - 11.5
+  - 11.75
+  - 12
+  - 12.5
+  - 16
+  - 16.5
+  - 18.5
+  - 19
+  - 19.5
+  - 19.75
+  - 20
+  - 20.5
+  - 24
+  - 24.5
+  - 26.5
+  - 27
+  - 27.5
+  - 27.75
+  - 28
+  - 29
+  - 29.5
+  - 30.5
+  - 31
+  - 31.5
