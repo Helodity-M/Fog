@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627e52e8dac0eab41aeac7a22cd45011, type: 3}
+  m_Name: L3_MelodyA
+  m_EditorClassIdentifier: Assembly-CSharp::NotePatternSO
+  NoteObject: {fileID: 6705484203047372072, guid: 053fda34bd679174cb291a91bf981cb0, type: 3}
+  NoteTimes:
+  - 0
+  - 0.25
+  - 0.5
+  - 0.75
+  - 1
+  - 2
+  - 3
+  - 3.5
+  - 4
+  - 5
+  - 5.5
+  - 7
+  - 8
+  - 8.25
+  - 8.5
+  - 8.75
+  - 9
+  - 10
+  - 11
+  - 11.5
+  - 12
+  - 12.25
+  - 12.5
+  - 12.75
+  - 13
+  - 13.5
+  - 14
+  - 15
+  - 16
+  - 16.25
+  - 16.5
+  - 16.75
+  - 17
+  - 18
+  - 19
+  - 19.5
+  - 20
+  - 21
+  - 21.5
+  - 23
+  - 24
+  - 24.25
+  - 24.5
+  - 24.75
+  - 25
+  - 25.5
+  - 26
+  - 26.5
+  - 27
+  - 27.5
+  - 28
+  - 29
+  - 29.5
+  - 30.5
+  - 31
+  - 31.5

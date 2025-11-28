@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4e85c7494b6a534686ff23565bedc0a, type: 3}
+  m_Name: LevelThree
+  m_EditorClassIdentifier: Assembly-CSharp::SongSO
+  CompletionCutscene: {fileID: 0}
+  SongClip: {fileID: 8300000, guid: e3e4d48ce464a544eb29faaa82f15569, type: 3}
+  BeatsPerMinute: 120
+  EndBeat: 280
+  NoteTimes:
+  - 80
+  - 112
+  - 144
+  - 176
+  - 208
+  - 224
+  - 240
+  NotePatterns:
+  - {fileID: 11400000, guid: 973cbd59bbdb2a049ab3320993a7853d, type: 2}
+  - {fileID: 11400000, guid: 497a419e228ce2744a6c513dfc059bd2, type: 2}
+  - {fileID: 11400000, guid: 973cbd59bbdb2a049ab3320993a7853d, type: 2}
+  - {fileID: 11400000, guid: 49d707ba3a8060b4db271c18a819e7f0, type: 2}
+  - {fileID: 11400000, guid: d9b3215d813369e4792e758ec6c690d6, type: 2}
+  - {fileID: 11400000, guid: d9b3215d813369e4792e758ec6c690d6, type: 2}
+  - {fileID: 11400000, guid: 973cbd59bbdb2a049ab3320993a7853d, type: 2}
+  BackgroundSprite: {fileID: 21300000, guid: 195dc6169a79d9b40a580b28beadfec9, type: 3}
+  GroundTileSprite: {fileID: 21300000, guid: 94b9aae5592f1fa48a1f78e8ed6f50f7, type: 3}
+  GroundTopSprite: {fileID: 21300000, guid: ab6c40bed381c994788c3371ef739bb4, type: 3}
