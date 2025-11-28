@@ -1055,14 +1055,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameplayManager
   player: {fileID: 1870573038}
-  perfectHealthChange: 0.01
-  greatHealthChange: 0.005
-  okHealthChange: 0
-  missHealthChange: -0.07
-  perfectTiming: 0.03
-  greatTiming: 0.1
-  okTiming: 0.25
-  missTiming: 0.5
+  healthChangeValues:
+    perfectValue: 0.01
+    greatValue: 0.005
+    okValue: 0
+    missValue: -0.07
+  timingValues:
+    perfectValue: 0.03
+    greatValue: 0.1
+    okValue: 0.25
+    missValue: 0.5
   visualOffset: 0
   NotePrefab: {fileID: 8656578292481971083, guid: 053fda34bd679174cb291a91bf981cb0, type: 3}
   ScrollSpeed: 2.5

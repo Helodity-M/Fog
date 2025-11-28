@@ -14,17 +14,11 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] SongPlayer player;
 
     [Header("Health")]
-    [SerializeField] float perfectHealthChange = 0.01f;
-    [SerializeField] float greatHealthChange = 0.005f;
-    [SerializeField] float okHealthChange = 0.0f;
-    [SerializeField] float missHealthChange = -0.07f;
+    [SerializeField] NoteAccuracyValue healthChangeValues;
     
 
     [Header("Timing")]
-    [SerializeField] float perfectTiming = 0.1f;
-    [SerializeField] float greatTiming = 0.25f;
-    [SerializeField] float okTiming = 0.4f;
-    [SerializeField] float missTiming = 0.5f;
+    [SerializeField] NoteAccuracyValue timingValues;
     [SerializeField] float visualOffset;
 
     [Header("Notes")]
@@ -69,7 +63,7 @@ public class GameplayManager : MonoBehaviour
     }
     void TryHitNote()
     {
-        float closest = missTiming; //Max gap from a note to "hit" it
+        float closest = timingValues.GetValue(NoteAccuracy.Miss); //Max gap from a note to "hit" it
         HittableNote closestNote = null;
         foreach (HittableNote note in NoteObjects)
         {
@@ -83,7 +77,7 @@ public class GameplayManager : MonoBehaviour
 
         if (closestNote)
         {
-            NoteAccuracy accuracy = GetAccuracy(closest);
+            NoteAccuracy accuracy = timingValues.GetAccuracy(Mathf.Abs(closest));
             closestNote.BeHit(accuracy);
             ModifyHealth(accuracy);
             NoteObjects.Remove(closestNote);
@@ -121,7 +115,7 @@ public class GameplayManager : MonoBehaviour
         for (int i = 0; i < NoteObjects.Count; i++)
         {
             HittableNote n = NoteObjects[i];
-            if (currentBeat - missTiming > n.noteTime)
+            if (currentBeat - timingValues.GetValue(NoteAccuracy.Miss) > n.noteTime)
             {
                 n.OnMiss();
                 ModifyHealth(NoteAccuracy.Miss);
@@ -149,42 +143,6 @@ public class GameplayManager : MonoBehaviour
 
     public void ModifyHealth(NoteAccuracy accuracy)
     {
-        float value = 0;
-        switch (accuracy)
-        {
-            case NoteAccuracy.Perfect:
-                value = perfectHealthChange;
-                break;
-            case NoteAccuracy.Great:
-                value = greatHealthChange;
-                break;
-            case NoteAccuracy.OK:
-                value = okHealthChange;
-                break;
-            case NoteAccuracy.Miss:
-                value = missHealthChange;
-                break;
-        }
-        playerHealth = Mathf.Min(1, playerHealth + value);
-    }
-    public NoteAccuracy GetAccuracy(float offsetSeconds)
-    {
-        float absOffset = Mathf.Abs(offsetSeconds);
-
-        if (absOffset < perfectTiming)
-        {
-            return NoteAccuracy.Perfect;
-        }
-
-        if (absOffset < greatTiming)
-        {
-            return NoteAccuracy.Great;
-        }
-
-        if (absOffset < okTiming)
-        {
-            return NoteAccuracy.OK;
-        }
-        return NoteAccuracy.Miss;
+        playerHealth = Mathf.Min(1, playerHealth + healthChangeValues.GetValue(accuracy));
     }
 }
