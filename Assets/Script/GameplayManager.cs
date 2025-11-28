@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -17,6 +18,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] float greatHealthChange = 0.005f;
     [SerializeField] float okHealthChange = 0.0f;
     [SerializeField] float missHealthChange = -0.07f;
+    
 
     [Header("Timing")]
     [SerializeField] float perfectTiming = 0.1f;
@@ -32,6 +34,13 @@ public class GameplayManager : MonoBehaviour
     List<Tuple<GameObject, float>> NoteList;
     int noteSpawnIdx = 0;
 
+   [Header("Score")]
+   [SerializeField] int scoreValue = 50;
+   ScoreKeeper scoreKeeper;
+
+
+    
+
     private void Start()
     {
         playerHealth = 1;
@@ -39,6 +48,8 @@ public class GameplayManager : MonoBehaviour
         inputAction = InputSystem.actions.FindAction("Jump");
         NoteObjects = new List<HittableNote>();
         player.BeginPlayback(3);
+        scoreKeeper = FindAnyObjectByType<ScoreKeeper>();
+        
     }
 
 
@@ -76,6 +87,7 @@ public class GameplayManager : MonoBehaviour
             closestNote.BeHit(accuracy);
             ModifyHealth(accuracy);
             NoteObjects.Remove(closestNote);
+            scoreKeeper.ModifyScore(scoreValue);
         }
     }
     void SpawnNewNotes()
