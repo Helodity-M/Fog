@@ -32,8 +32,17 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] NoteAccuracyValue scoreValues;
     ScoreKeeper scoreKeeper;
 
+    [Header("Debug")]
+    [SerializeField] SongSO DefaultSong;
+
     private void Start()
     {
+        //In case we dont set something oops
+        if (SongPlayer.CurrentSong == null)
+        {
+            SongPlayer.CurrentSong = DefaultSong;
+            SongPlayer.IsFreeplay = true;
+        }
         playerHealth = 1;
         NoteList = SongPlayer.CurrentSong.Parse();
         inputAction = InputSystem.actions.FindAction("Jump");
