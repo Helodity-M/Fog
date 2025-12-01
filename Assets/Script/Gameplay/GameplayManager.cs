@@ -99,8 +99,8 @@ public class GameplayManager : MonoBehaviour
             if (spawnBeat - currentBeat <= player.SecondsToBeats(5))
             {
                 HittableNote note = Instantiate(NotePrefab, transform);
-                note.noteTime = NoteList[i].Item2;
-                note.transform.position = new Vector3((spawnBeat + visualOffset - currentBeat) * ScrollSpeed, 0, 0);
+                note.noteTime = spawnBeat;
+                note.transform.position = GetNotePosition(spawnBeat);
                 NoteObjects.Add(note);
 
                 noteSpawnIdx++;
@@ -112,6 +112,13 @@ public class GameplayManager : MonoBehaviour
 
         }
     }
+
+    Vector3 GetNotePosition(float noteBeat)
+    {
+        float currentBeat = player.GetCurrentBeatNumber();
+        return new Vector3(player.BeatToSeconds(noteBeat + visualOffset - currentBeat) * ScrollSpeed, 0, 0);
+    }
+
     //Updating note positions + removing missed notes
     void UpdateNotePosition()
     {
@@ -125,7 +132,7 @@ public class GameplayManager : MonoBehaviour
                 i--;
                 continue;
             }
-            n.transform.position = new Vector3((n.noteTime + visualOffset - currentBeat) * ScrollSpeed, 0, 0);
+            n.transform.position = GetNotePosition(n.noteTime);
         }
     }
     void HitNote(HittableNote note, NoteAccuracy accuracy)

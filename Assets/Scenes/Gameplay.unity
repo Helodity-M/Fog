@@ -1300,11 +1300,11 @@ MonoBehaviour:
     missValue: 0.5
   visualOffset: 0
   NotePrefab: {fileID: 8656578292481971083, guid: 053fda34bd679174cb291a91bf981cb0, type: 3}
-  ScrollSpeed: 3
+  ScrollSpeed: 6
   scoreValues:
     perfectValue: 100
     greatValue: 75
-    okValue: 50
+    okValue: 25
     missValue: 0
   DefaultSong: {fileID: 11400000, guid: 65e1838d15c38d74c9475e8d6f1fb7cd, type: 2}
 --- !u!4 &1049119043
