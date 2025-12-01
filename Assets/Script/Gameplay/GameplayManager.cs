@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -14,11 +13,10 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] SongPlayer player;
 
     [Header("Health")]
-    [SerializeField] NoteAccuracyValue healthChangeValues;
+    [SerializeField] NoteAccuracyValue<float> healthChangeValues;
     
-
     [Header("Timing")]
-    [SerializeField] NoteAccuracyValue timingValues;
+    [SerializeField] NoteAccuracyValue<float> timingValues;
     [SerializeField] float visualOffset;
 
     [Header("Notes")]
@@ -29,7 +27,7 @@ public class GameplayManager : MonoBehaviour
     int noteSpawnIdx = 0;
 
     [Header("Score")]
-    [SerializeField] NoteAccuracyValue scoreValues;
+    [SerializeField] NoteAccuracyValue<int> scoreValues;
     ScoreKeeper scoreKeeper;
 
     [Header("Debug")]
@@ -81,7 +79,7 @@ public class GameplayManager : MonoBehaviour
 
         if (closestNote)
         {
-            NoteAccuracy accuracy = timingValues.GetAccuracy(Mathf.Abs(closest));
+            NoteAccuracy accuracy = GetAccuracy(Mathf.Abs(closest), timingValues);
             closestNote.BeHit(accuracy);
             ModifyHealth(accuracy);
             NoteObjects.Remove(closestNote);
@@ -136,14 +134,33 @@ public class GameplayManager : MonoBehaviour
         if (SongPlayer.CurrentSong.CompletionCutscene != null && !SongPlayer.IsFreeplay)
         {
             CutsceneManager.currentCutscene = SongPlayer.CurrentSong.CompletionCutscene;
-            SceneManager.LoadScene("Cutscene");
+            FadeManager.Instance.FadeToScene("Cutscene");
         }
         else
         {
-            SceneManager.LoadScene("MainMenu");
+            FadeManager.Instance.FadeToScene("MainMenu");
         }
     }
 
+
+    public NoteAccuracy GetAccuracy(float value, NoteAccuracyValue<float> noteValues)
+    {
+        if (value < noteValues.GetValue(NoteAccuracy.Perfect))
+        {
+            return NoteAccuracy.Perfect;
+        }
+
+        if (value < noteValues.GetValue(NoteAccuracy.Great))
+        {
+            return NoteAccuracy.Great;
+        }
+
+        if (value < noteValues.GetValue(NoteAccuracy.OK))
+        {
+            return NoteAccuracy.OK;
+        }
+        return NoteAccuracy.Miss;
+    }
 
     public void ModifyHealth(NoteAccuracy accuracy)
     {

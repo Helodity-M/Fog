@@ -60,10 +60,10 @@ public class CutsceneManager : MonoBehaviour
             if (currentCutscene.SongToPlay != null)
             {
                 SongPlayer.CurrentSong = currentCutscene.SongToPlay;
-                SceneManager.LoadScene("Gameplay");
+                FadeManager.Instance.FadeToScene("Gameplay");
             } else
             {
-                SceneManager.LoadScene("MainMenu");
+                FadeManager.Instance.FadeToScene("MainMenu");
             }
             return;
         }

@@ -2,15 +2,15 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class NoteAccuracyValue
+public class NoteAccuracyValue<T>
 {
-    [SerializeField] float perfectValue;
-    [SerializeField] float greatValue;
-    [SerializeField] float okValue;
-    [SerializeField] float missValue;
+    [SerializeField] T perfectValue;
+    [SerializeField] T greatValue;
+    [SerializeField] T okValue;
+    [SerializeField] T missValue;
 
 
-    public float GetValue(NoteAccuracy accuracy)
+    public T GetValue(NoteAccuracy accuracy)
     {
         switch (accuracy)
         {
@@ -26,25 +26,4 @@ public class NoteAccuracyValue
                 return missValue;
         }
     }
-
-    //This technically breaks whenever you want a bigger value to be the "perfect" value but oh well
-    public NoteAccuracy GetAccuracy(float value)
-    {
-        if (value < perfectValue)
-        {
-            return NoteAccuracy.Perfect;
-        }
-
-        if (value < greatValue)
-        {
-            return NoteAccuracy.Great;
-        }
-
-        if (value < okValue)
-        {
-            return NoteAccuracy.OK;
-        }
-        return NoteAccuracy.Miss;
-    }
-
 }
