@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e85c7494b6a534686ff23565bedc0a, type: 3}
   m_Name: Metronome
   m_EditorClassIdentifier: Assembly-CSharp::SongSO
+  CompletionCutscene: {fileID: 0}
   SongClip: {fileID: 8300000, guid: 86b879901b217e14fa8c285cd54a39fd, type: 3}
   BeatsPerMinute: 60
+  EndBeat: 0
   NoteTimes:
   - 0
   - 4
@@ -26,3 +28,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5b742b42e44e2544c9a7467c660cb35f, type: 2}
   - {fileID: 11400000, guid: 5b742b42e44e2544c9a7467c660cb35f, type: 2}
   - {fileID: 11400000, guid: 5b742b42e44e2544c9a7467c660cb35f, type: 2}
+  BackgroundSprite: {fileID: 21300000, guid: 9c82b6ad87c042348aacc81b6fadcc87, type: 3}
+  GroundTileSprite: {fileID: 21300000, guid: 94b9aae5592f1fa48a1f78e8ed6f50f7, type: 3}
+  GroundTopSprite: {fileID: 21300000, guid: ab6c40bed381c994788c3371ef739bb4, type: 3}

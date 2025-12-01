@@ -1306,7 +1306,7 @@ MonoBehaviour:
     greatValue: 75
     okValue: 50
     missValue: 0
-  DefaultSong: {fileID: 11400000, guid: 120bcaf6f7796774bb2109dc20389c4e, type: 2}
+  DefaultSong: {fileID: 11400000, guid: 65e1838d15c38d74c9475e8d6f1fb7cd, type: 2}
 --- !u!4 &1049119043
 Transform:
   m_ObjectHideFlags: 0
