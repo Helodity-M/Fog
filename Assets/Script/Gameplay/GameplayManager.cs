@@ -52,6 +52,11 @@ public class GameplayManager : MonoBehaviour
 
     private void Update()
     {
+        if (!IsAlive())
+        {
+            Debug.Log("LOSE LOSE LOSE LOSE");
+        }
+
         if (inputAction.WasPerformedThisFrame())
         {
             TryHitNote();
@@ -83,7 +88,7 @@ public class GameplayManager : MonoBehaviour
             closestNote.BeHit(accuracy);
             ModifyHealth(accuracy);
             NoteObjects.Remove(closestNote);
-            scoreKeeper.ModifyScore((int)scoreValues.GetValue(accuracy));
+            scoreKeeper.ModifyScore(scoreValues.GetValue(accuracy));
         }
     }
     void SpawnNewNotes()
@@ -160,6 +165,11 @@ public class GameplayManager : MonoBehaviour
             return NoteAccuracy.OK;
         }
         return NoteAccuracy.Miss;
+    }
+
+    bool IsAlive()
+    {
+        return playerHealth > 0 || UserOptions.NoFail;
     }
 
     public void ModifyHealth(NoteAccuracy accuracy)

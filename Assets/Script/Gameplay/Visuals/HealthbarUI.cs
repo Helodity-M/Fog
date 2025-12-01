@@ -16,6 +16,12 @@ public class HealthbarUI : MonoBehaviour
     }
     void Update()
     {
+        if (UserOptions.NoFail)
+        {
+            //Force full health
+            healthSlider.value = 1;
+            return;
+        }
         float targetScore = gameplayManager.playerHealth;
         float difference = targetScore - CurValue;
         float toChange = difference * ValueChangeSpeed * Time.unscaledDeltaTime;

@@ -1289,12 +1289,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameplayManager
   player: {fileID: 1870573038}
   healthChangeValues:
-    perfectValue: 0.01
-    greatValue: 0.005
-    okValue: 0
-    missValue: -0.07
-  timingValues:
     perfectValue: 0.03
+    greatValue: 0.01
+    okValue: 0
+    missValue: -0.1
+  timingValues:
+    perfectValue: 0.05
     greatValue: 0.1
     okValue: 0.25
     missValue: 0.5
