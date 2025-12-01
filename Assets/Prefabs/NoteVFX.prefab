@@ -10109,8 +10109,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NoteVFX
   Text:
     perfectValue: PERFECT!
-    greatValue: Great
-    okValue: Ok...
+    greatValue: Great!
+    okValue: Ok
     missValue: Miss...
   HitParticles:
     perfectValue: {fileID: 8237247742843859282}

@@ -8,15 +8,7 @@ public class HittableNote : MonoBehaviour
 
     public void BeHit(NoteAccuracy accuracy)
     {
-        Debug.Log($"Hit note at {noteTime} ({accuracy})");
         playVFX(accuracy);
-        Destroy(gameObject);
-    }
-
-    public void OnMiss()
-    {
-        Debug.Log($"Missed note at {noteTime}.");
-        playVFX(NoteAccuracy.Miss);
         Destroy(gameObject);
     }
 

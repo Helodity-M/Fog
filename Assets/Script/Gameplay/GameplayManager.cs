@@ -70,7 +70,7 @@ public class GameplayManager : MonoBehaviour
     }
     void TryHitNote()
     {
-        float closest = timingValues.GetValue(NoteAccuracy.Miss); //Max gap from a note to "hit" it
+        float closest = timingValues.GetValue(NoteAccuracy.OK); //Max gap from a note to "hit" it
         HittableNote closestNote = null;
         foreach (HittableNote note in NoteObjects)
         {
@@ -85,10 +85,7 @@ public class GameplayManager : MonoBehaviour
         if (closestNote)
         {
             NoteAccuracy accuracy = GetAccuracy(Mathf.Abs(closest), timingValues);
-            closestNote.BeHit(accuracy);
-            ModifyHealth(accuracy);
-            NoteObjects.Remove(closestNote);
-            scoreKeeper.ModifyScore(scoreValues.GetValue(accuracy));
+            HitNote(closestNote, accuracy);
         }
     }
     void SpawnNewNotes()
@@ -124,14 +121,19 @@ public class GameplayManager : MonoBehaviour
             HittableNote n = NoteObjects[i];
             if (currentBeat - timingValues.GetValue(NoteAccuracy.Miss) > n.noteTime)
             {
-                n.OnMiss();
-                ModifyHealth(NoteAccuracy.Miss);
-                NoteObjects.Remove(n);
+                HitNote(n, NoteAccuracy.Miss);
                 i--;
                 continue;
             }
             n.transform.position = new Vector3((n.noteTime + visualOffset - currentBeat) * ScrollSpeed, 0, 0);
         }
+    }
+    void HitNote(HittableNote note, NoteAccuracy accuracy)
+    {
+        note.BeHit(accuracy);
+        ModifyHealth(accuracy);
+        scoreKeeper.ModifyScore(scoreValues.GetValue(accuracy));
+        NoteObjects.Remove(note);
     }
 
     void EndSong()
