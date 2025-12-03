@@ -15,8 +15,14 @@ MonoBehaviour:
   SongToPlay: {fileID: 11400000, guid: dae2ec133dae2d04680234f9b42163c0, type: 2}
   BackgroundSprite: {fileID: 21300000, guid: 6265ba6951791254e938e2f05b5ba295, type: 3}
   characters:
-  - characterSprite: {fileID: 7482667652216324306, guid: 69071b9624b787b429969500efecebfb, type: 3}
-  - characterSprite: {fileID: 7482667652216324306, guid: 5bdad7dc376a82f49a3e62660b0c2bfc, type: 3}
+  - characterSprite: {fileID: 1628365347258722896, guid: dc7dd1f5a524e7148b2552abe5810bbd, type: 3}
+  - characterSprite: {fileID: 8633881525917383573, guid: 7b5c9badc092b4b47902b709b03dff30, type: 3}
   dialogue:
-  - Text: 'GOTO LEVEL 2. TODO: WRITE DIALOG'
+  - Text: YOU'LL NEVER BECOME THE BEAT KING
+    SpeakerIdx: 1
+  - Text: Nah,
     SpeakerIdx: 0
+  - Text: I'd win.
+    SpeakerIdx: 0
+  - Text: GET HIM BOYS
+    SpeakerIdx: 1

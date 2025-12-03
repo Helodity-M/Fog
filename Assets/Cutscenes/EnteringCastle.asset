@@ -15,8 +15,12 @@ MonoBehaviour:
   SongToPlay: {fileID: 11400000, guid: 08977aaed06510146a4b0c2a36318fbe, type: 2}
   BackgroundSprite: {fileID: 21300000, guid: 6265ba6951791254e938e2f05b5ba295, type: 3}
   characters:
-  - characterSprite: {fileID: 7482667652216324306, guid: 69071b9624b787b429969500efecebfb, type: 3}
-  - characterSprite: {fileID: 7482667652216324306, guid: 5bdad7dc376a82f49a3e62660b0c2bfc, type: 3}
+  - characterSprite: {fileID: 1628365347258722896, guid: dc7dd1f5a524e7148b2552abe5810bbd, type: 3}
+  - characterSprite: {fileID: 8633881525917383573, guid: 7b5c9badc092b4b47902b709b03dff30, type: 3}
   dialogue:
-  - Text: 'GOTO LEVEL 3. TODO: WRITE DIALOG'
+  - Text: Wow these guys really gotta get on my level.
     SpeakerIdx: 0
+  - Text: At this rate I'll become the new beat king!
+    SpeakerIdx: 0
+  - Text: Bro please you killed my wife.
+    SpeakerIdx: 1

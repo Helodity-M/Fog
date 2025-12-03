@@ -15,17 +15,9 @@ MonoBehaviour:
   SongToPlay: {fileID: 0}
   BackgroundSprite: {fileID: 21300000, guid: 6265ba6951791254e938e2f05b5ba295, type: 3}
   characters:
-  - characterSprite: {fileID: 7482667652216324306, guid: 69071b9624b787b429969500efecebfb, type: 3}
+  - characterSprite: {fileID: 1628365347258722896, guid: dc7dd1f5a524e7148b2552abe5810bbd, type: 3}
   dialogue:
-  - Text: Lol you died
-    SpeakerIdx: 0
-  - Text: 'Lmao '
-    SpeakerIdx: 1
-  - Text: lol
-    SpeakerIdx: 0
-  - Text: haha
-    SpeakerIdx: 0
-  - Text: xd
-    SpeakerIdx: 0
-  - Text: wow you suck
-    SpeakerIdx: 0
+  - Text: And that was the tale
+    SpeakerIdx: -1
+  - Text: Of the failed beat king...
+    SpeakerIdx: -1

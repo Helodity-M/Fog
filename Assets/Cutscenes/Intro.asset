@@ -15,8 +15,20 @@ MonoBehaviour:
   SongToPlay: {fileID: 11400000, guid: 120bcaf6f7796774bb2109dc20389c4e, type: 2}
   BackgroundSprite: {fileID: 21300000, guid: cfae008b2060f7249b9a572ecbd3b4eb, type: 3}
   characters:
-  - characterSprite: {fileID: 7482667652216324306, guid: 69071b9624b787b429969500efecebfb, type: 3}
-  - characterSprite: {fileID: 7482667652216324306, guid: 5bdad7dc376a82f49a3e62660b0c2bfc, type: 3}
+  - characterSprite: {fileID: 1628365347258722896, guid: dc7dd1f5a524e7148b2552abe5810bbd, type: 3}
+  - characterSprite: {fileID: 21300000, guid: bcf4b56957ea3584d8eda4043753a5e8, type: 3}
   dialogue:
-  - Text: 'GOTO LEVEL 1. TODO: WRITE DIALOG'
+  - Text: Son.....
+    SpeakerIdx: 1
+  - Text: I'm not long for this world...
+    SpeakerIdx: 1
+  - Text: My final message...
+    SpeakerIdx: 1
+  - Text: Beat your enemies
+    SpeakerIdx: 1
+  - Text: '*dies*'
+    SpeakerIdx: 1
+  - Text: ...
+    SpeakerIdx: -1
+  - Text: ...Beat them, huh?
     SpeakerIdx: 0

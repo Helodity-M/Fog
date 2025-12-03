@@ -101,13 +101,13 @@ public class GameplayManager : MonoBehaviour
 
         for (int i = noteSpawnIdx; i < NoteList.Count; i++)
         {
-            float spawnBeat = NoteList[i].Item2;
+            float hitBeat = NoteList[i].Item2;
             //5 Second window
-            if (spawnBeat - currentBeat <= player.SecondsToBeats(5))
+            if (hitBeat - currentBeat <= player.SecondsToBeats(5))
             {
                 HittableNote note = Instantiate(NotePrefab, transform);
-                note.noteTime = spawnBeat;
-                note.transform.position = GetNotePosition(spawnBeat);
+                note.noteTime = hitBeat;
+                note.transform.position = GetNotePosition(hitBeat);
                 NoteObjects.Add(note);
 
                 noteSpawnIdx++;
@@ -134,7 +134,7 @@ public class GameplayManager : MonoBehaviour
         for (int i = 0; i < NoteObjects.Count; i++)
         {
             HittableNote n = NoteObjects[i];
-            if (currentBeat - timingValues.GetValue(NoteAccuracy.OK) > n.noteTime)
+            if (currentBeat - player.SecondsToBeats(timingValues.GetValue(NoteAccuracy.OK)) > n.noteTime)
             {
                 HitNote(n, NoteAccuracy.Miss);
                 i--;
