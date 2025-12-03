@@ -14,9 +14,7 @@ public class SongSO : ScriptableObject
     [SerializeField] List<NotePatternSO> NotePatterns;
 
     [Header("Visuals")]
-    public Sprite BackgroundSprite;
-    public Sprite GroundTileSprite;
-    public Sprite GroundTopSprite;
+    public GameObject EnvironmentPrefab;
 
 
     public List<Tuple<GameObject, float>> Parse()

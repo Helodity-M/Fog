@@ -9,7 +9,7 @@ public class BackgroundScroller : MonoBehaviour
 
     private void Start()
     {
-        mat = GetComponent<SpriteRenderer>().material;
+        mat = GetComponent<MeshRenderer>().material;
         offset = Vector2.zero;
     }
 
