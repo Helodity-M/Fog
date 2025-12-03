@@ -32,6 +32,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d9b3215d813369e4792e758ec6c690d6, type: 2}
   - {fileID: 11400000, guid: d9b3215d813369e4792e758ec6c690d6, type: 2}
   - {fileID: 11400000, guid: 973cbd59bbdb2a049ab3320993a7853d, type: 2}
-  BackgroundSprite: {fileID: 21300000, guid: 195dc6169a79d9b40a580b28beadfec9, type: 3}
-  GroundTileSprite: {fileID: 21300000, guid: 94b9aae5592f1fa48a1f78e8ed6f50f7, type: 3}
-  GroundTopSprite: {fileID: 21300000, guid: ab6c40bed381c994788c3371ef739bb4, type: 3}
+  EnvironmentPrefab: {fileID: 6613401031644187477, guid: 189f995900c22dd4c8a87927345d2da7, type: 3}

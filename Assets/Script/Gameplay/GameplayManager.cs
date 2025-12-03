@@ -26,6 +26,9 @@ public class GameplayManager : MonoBehaviour
     List<Tuple<GameObject, float>> NoteList;
     int noteSpawnIdx = 0;
 
+    [Header("Environment")]
+    [SerializeField] Vector2 SpawnOffset;
+
     [Header("Score")]
     [SerializeField] NoteAccuracyValue<int> scoreValues;
     ScoreKeeper scoreKeeper;
@@ -45,6 +48,7 @@ public class GameplayManager : MonoBehaviour
         }
         playerHealth = 1;
         NoteList = SongPlayer.CurrentSong.Parse();
+        Instantiate(SongPlayer.CurrentSong.EnvironmentPrefab, SpawnOffset, Quaternion.identity);
         inputAction = InputSystem.actions.FindAction("Jump");
         NoteObjects = new List<HittableNote>();
         player.BeginPlayback(2);
