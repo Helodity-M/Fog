@@ -1152,6 +1152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthbarUI
   healthSlider: {fileID: 955311066}
+  FillImage: {fileID: 0}
   ValueChangeSpeed: 7
 --- !u!1 &1049119041
 GameObject:
@@ -1195,13 +1196,14 @@ MonoBehaviour:
     missValue: 0.5
   visualOffset: 0
   NotePrefab: {fileID: 8656578292481971083, guid: 053fda34bd679174cb291a91bf981cb0, type: 3}
-  ScrollSpeed: 3
+  ScrollSpeed: 7
   SpawnOffset: {x: 3, y: 2.4}
   scoreValues:
     perfectValue: 100
     greatValue: 75
     okValue: 50
     missValue: 0
+  LoseCutscene: {fileID: 11400000, guid: e014e9e61bcfce843adc09e77d4b1480, type: 2}
   DefaultSong: {fileID: 11400000, guid: 120bcaf6f7796774bb2109dc20389c4e, type: 2}
 --- !u!4 &1049119043
 Transform:
