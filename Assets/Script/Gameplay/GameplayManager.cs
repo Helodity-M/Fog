@@ -30,6 +30,8 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] NoteAccuracyValue<int> scoreValues;
     ScoreKeeper scoreKeeper;
 
+    [SerializeField] CutsceneSO LoseCutscene;
+
     [Header("Debug")]
     [SerializeField] SongSO DefaultSong;
 
@@ -54,7 +56,8 @@ public class GameplayManager : MonoBehaviour
     {
         if (!IsAlive())
         {
-            Debug.Log("LOSE LOSE LOSE LOSE");
+            CutsceneManager.currentCutscene = LoseCutscene;
+            FadeManager.Instance.FadeToScene("Cutscene");
         }
 
         if (inputAction.WasPerformedThisFrame())
@@ -107,6 +110,7 @@ public class GameplayManager : MonoBehaviour
             }
             else
             {
+                //Notes are already sorted, so if we cant spawn this one yet we cant spawn any more
                 break;
             }
 
@@ -126,7 +130,7 @@ public class GameplayManager : MonoBehaviour
         for (int i = 0; i < NoteObjects.Count; i++)
         {
             HittableNote n = NoteObjects[i];
-            if (currentBeat - timingValues.GetValue(NoteAccuracy.Miss) > n.noteTime)
+            if (currentBeat - timingValues.GetValue(NoteAccuracy.OK) > n.noteTime)
             {
                 HitNote(n, NoteAccuracy.Miss);
                 i--;
