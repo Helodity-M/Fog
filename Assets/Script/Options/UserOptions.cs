@@ -3,4 +3,5 @@ using UnityEngine;
 public static class UserOptions
 {
     public static bool EnablePostProcessing = true;
+    public static bool NoFail = false;
 }

@@ -2,18 +2,20 @@ using UnityEngine;
 
 public class HittableNote : MonoBehaviour
 {
+    [SerializeField] NoteVFX VFXPrefab;
     [HideInInspector] public float noteTime;
 
 
     public void BeHit(NoteAccuracy accuracy)
     {
-        Debug.Log($"Hit note at {noteTime} ({accuracy})");
-        Destroy(gameObject); //TODO: Replace with death animation
+        playVFX(accuracy);
+        Destroy(gameObject);
     }
 
-    public void OnMiss()
+    void playVFX(NoteAccuracy accuracy)
     {
-        Debug.Log($"Missed note at {noteTime}.");
-        Destroy(gameObject); //TODO: add damage and run off effect
+        VFXPrefab = Instantiate(VFXPrefab, transform.position, Quaternion.identity);
+        VFXPrefab.PlayVFX(accuracy);
     }
+
 }

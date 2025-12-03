@@ -29,22 +29,15 @@ public class MainMenuManager : MonoBehaviour
         CutsceneManager.currentCutscene = StartingCutscene;
         SongPlayer.IsFreeplay = false;
         OnStartSceneLeave();
-        StartCoroutine(LoadScene("Cutscene", 0.5f));
+        FadeManager.Instance.FadeToScene("Cutscene");
     }
-
-    IEnumerator LoadScene(string sceneName, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene(sceneName);
-    }
-
     public void LoadFreeplaySong(SongSO song)
     {
         CloseFreeplayPage(); //I cannot be bothered to make a better implementation
         OnStartSceneLeave();
         SongPlayer.IsFreeplay = true;
         SongPlayer.CurrentSong = song;
-        StartCoroutine(LoadScene("Gameplay", 0.5f));
+        FadeManager.Instance.FadeToScene("Gameplay");
     }
 
 

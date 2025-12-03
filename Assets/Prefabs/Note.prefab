@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cec9c145a65cf3f43911401017cd19ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HittableNote
+  VFXPrefab: {fileID: -4121004930900788794, guid: 23901cfd0b74eac45be0b1037995dc0b, type: 3}
   noteTime: 0
 --- !u!114 &-6159829482109587214
 MonoBehaviour:

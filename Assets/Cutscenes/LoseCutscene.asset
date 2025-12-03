@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19a678e4281280745a3b33aac72fb395, type: 3}
+  m_Name: LoseCutscene
+  m_EditorClassIdentifier: Assembly-CSharp::CutsceneSO
+  SongToPlay: {fileID: 0}
+  BackgroundSprite: {fileID: 21300000, guid: 6265ba6951791254e938e2f05b5ba295, type: 3}
+  characters:
+  - characterSprite: {fileID: 7482667652216324306, guid: 69071b9624b787b429969500efecebfb, type: 3}
+  dialogue:
+  - Text: Lol you died
+    SpeakerIdx: 0
+  - Text: 'Lmao '
+    SpeakerIdx: 1
+  - Text: lol
+    SpeakerIdx: 0
+  - Text: haha
+    SpeakerIdx: 0
+  - Text: xd
+    SpeakerIdx: 0
+  - Text: wow you suck
+    SpeakerIdx: 0

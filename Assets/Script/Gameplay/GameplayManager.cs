@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -14,11 +13,10 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] SongPlayer player;
 
     [Header("Health")]
-    [SerializeField] NoteAccuracyValue healthChangeValues;
+    [SerializeField] NoteAccuracyValue<float> healthChangeValues;
     
-
     [Header("Timing")]
-    [SerializeField] NoteAccuracyValue timingValues;
+    [SerializeField] NoteAccuracyValue<float> timingValues;
     [SerializeField] float visualOffset;
 
     [Header("Notes")]
@@ -32,8 +30,10 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] Vector2 SpawnOffset;
 
     [Header("Score")]
-    [SerializeField] NoteAccuracyValue scoreValues;
+    [SerializeField] NoteAccuracyValue<int> scoreValues;
     ScoreKeeper scoreKeeper;
+
+    [SerializeField] CutsceneSO LoseCutscene;
 
     [Header("Debug")]
     [SerializeField] SongSO DefaultSong;
@@ -58,6 +58,12 @@ public class GameplayManager : MonoBehaviour
 
     private void Update()
     {
+        if (!IsAlive())
+        {
+            CutsceneManager.currentCutscene = LoseCutscene;
+            FadeManager.Instance.FadeToScene("Cutscene");
+        }
+
         if (inputAction.WasPerformedThisFrame())
         {
             TryHitNote();
@@ -71,7 +77,7 @@ public class GameplayManager : MonoBehaviour
     }
     void TryHitNote()
     {
-        float closest = timingValues.GetValue(NoteAccuracy.Miss); //Max gap from a note to "hit" it
+        float closest = timingValues.GetValue(NoteAccuracy.OK); //Max gap from a note to "hit" it
         HittableNote closestNote = null;
         foreach (HittableNote note in NoteObjects)
         {
@@ -85,11 +91,8 @@ public class GameplayManager : MonoBehaviour
 
         if (closestNote)
         {
-            NoteAccuracy accuracy = timingValues.GetAccuracy(Mathf.Abs(closest));
-            closestNote.BeHit(accuracy);
-            ModifyHealth(accuracy);
-            NoteObjects.Remove(closestNote);
-            scoreKeeper.ModifyScore((int)scoreValues.GetValue(accuracy));
+            NoteAccuracy accuracy = GetAccuracy(Mathf.Abs(closest), timingValues);
+            HitNote(closestNote, accuracy);
         }
     }
     void SpawnNewNotes()
@@ -103,19 +106,27 @@ public class GameplayManager : MonoBehaviour
             if (spawnBeat - currentBeat <= player.SecondsToBeats(5))
             {
                 HittableNote note = Instantiate(NotePrefab, transform);
-                note.noteTime = NoteList[i].Item2;
-                note.transform.position = new Vector3((spawnBeat + visualOffset - currentBeat) * ScrollSpeed, 0, 0);
+                note.noteTime = spawnBeat;
+                note.transform.position = GetNotePosition(spawnBeat);
                 NoteObjects.Add(note);
 
                 noteSpawnIdx++;
             }
             else
             {
+                //Notes are already sorted, so if we cant spawn this one yet we cant spawn any more
                 break;
             }
 
         }
     }
+
+    Vector3 GetNotePosition(float noteBeat)
+    {
+        float currentBeat = player.GetCurrentBeatNumber();
+        return new Vector3(player.BeatToSeconds(noteBeat + visualOffset - currentBeat) * ScrollSpeed, 0, 0);
+    }
+
     //Updating note positions + removing missed notes
     void UpdateNotePosition()
     {
@@ -123,16 +134,21 @@ public class GameplayManager : MonoBehaviour
         for (int i = 0; i < NoteObjects.Count; i++)
         {
             HittableNote n = NoteObjects[i];
-            if (currentBeat - timingValues.GetValue(NoteAccuracy.Miss) > n.noteTime)
+            if (currentBeat - timingValues.GetValue(NoteAccuracy.OK) > n.noteTime)
             {
-                n.OnMiss();
-                ModifyHealth(NoteAccuracy.Miss);
-                NoteObjects.Remove(n);
+                HitNote(n, NoteAccuracy.Miss);
                 i--;
                 continue;
             }
-            n.transform.position = new Vector3((n.noteTime + visualOffset - currentBeat) * ScrollSpeed, 0, 0);
+            n.transform.position = GetNotePosition(n.noteTime);
         }
+    }
+    void HitNote(HittableNote note, NoteAccuracy accuracy)
+    {
+        note.BeHit(accuracy);
+        ModifyHealth(accuracy);
+        scoreKeeper.ModifyScore(scoreValues.GetValue(accuracy));
+        NoteObjects.Remove(note);
     }
 
     void EndSong()
@@ -140,14 +156,38 @@ public class GameplayManager : MonoBehaviour
         if (SongPlayer.CurrentSong.CompletionCutscene != null && !SongPlayer.IsFreeplay)
         {
             CutsceneManager.currentCutscene = SongPlayer.CurrentSong.CompletionCutscene;
-            SceneManager.LoadScene("Cutscene");
+            FadeManager.Instance.FadeToScene("Cutscene");
         }
         else
         {
-            SceneManager.LoadScene("MainMenu");
+            FadeManager.Instance.FadeToScene("MainMenu");
         }
     }
 
+
+    public NoteAccuracy GetAccuracy(float value, NoteAccuracyValue<float> noteValues)
+    {
+        if (value < noteValues.GetValue(NoteAccuracy.Perfect))
+        {
+            return NoteAccuracy.Perfect;
+        }
+
+        if (value < noteValues.GetValue(NoteAccuracy.Great))
+        {
+            return NoteAccuracy.Great;
+        }
+
+        if (value < noteValues.GetValue(NoteAccuracy.OK))
+        {
+            return NoteAccuracy.OK;
+        }
+        return NoteAccuracy.Miss;
+    }
+
+    bool IsAlive()
+    {
+        return playerHealth > 0 || UserOptions.NoFail;
+    }
 
     public void ModifyHealth(NoteAccuracy accuracy)
     {
